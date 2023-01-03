@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Emisión Factura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="crearFactura" color="warning">
+    <ion-card-title>Factura</ion-card-title>
+    <h1 class="ion-text-center">Cliente</h1>
+    <table class="ion-align-items-center">
+
+      <thead>
+        <tr>
+          <th>
+            <ion-input #identificador id="identificacionNumero" type="text" class="input1"
+              placeholder="Ingrese # identificación" required></ion-input>
+
+          </th>
+          <th>
+            <ion-button slot="end" (click)="buscarClienteIdentificacion(''+identificador.value)">
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+          </th>
+        </tr>
+      </thead>
+    </table>
+
+    <ion-input [(ngModel)]="cliente.nombre" id="id" type="text" class="ion-text-center" readOnly></ion-input>
+  
+    <h1 class="ion-text-center">Servicios</h1>
+    <form>
+      <ion-select placeholder="Seleccione Un servicio" class="input1" #seer>
+        <ion-select-option #seer  *ngFor="let servicio of servicioT"
+          value="{{servicio.id}}">{{servicio.descripcion}}</ion-select-option>
+
+      </ion-select>
+      <ion-label position="floating" class="ion-align-items-center">Precio Unitario</ion-label>
+      <ion-input #precioUnitario id="precioUnitario" type="text" class="input1" placeholder="Ingrese la cantidad" required
+        type="number"></ion-input>
+      <ion-label position="floating" class="ion-align-items-center">Cantidad</ion-label>
+      <ion-input #cantidad id="cantidad" type="text" class="input1" placeholder="Ingrese la cantidad" required
+        type="number"></ion-input>
+
+
+      <ion-button  class="button"  (click)="agregarDetalles(+precioUnitario.value,+seer.value, +cantidad.value)">Agregar</ion-button>
+    </form> 
+    <ion-card-content>
+
+      <table class="tftable">
+        <tr>
+          <th>ServicioId</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+        </tr>
+        <tr *ngFor="let detalles of det">
+          <td>{{detalles.servicioId}}</td>
+          <td>{{detalles.cantidad}}</td>
+          <td>{{detalles.precioUnitario}}</td>
+          <td>{{detalles.total}}</td>
+        </tr>
+        <tr>
+          <th>--------</th>
+          <th>--------</th>
+          <th>subtotal</th>
+          <th>{{subtotal}}</th>
+        </tr>
+        <tr>
+          <th>--------</th>
+          <th>--------</th>
+          <th>iva</th>
+          <th>{{impuesto}}</th>
+        </tr>
+        <tr>
+          <th>--------</th>
+          <th>--------</th>
+          <th>Total</th>
+          <th>{{totalF}}</th>
+        </tr>
+      </table>
+      
+
+
+    </ion-card-content>
+    
+  </ion-card>
+
+</ion-content>

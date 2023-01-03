@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button color="dark" routerLink="../listar-servicios">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>Regresar</ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-start" color="dark">SERVICIO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+
+
+    <img src="https://cdn-icons-png.flaticon.com/512/1458/1458564.png" />
+
+
+    <ion-card-title class="ion-text-center">Actualizar Servicio</ion-card-title>
+    <form [formGroup]="servicioActualizarForm" (ngSubmit)="actualizarServicio()">
+      <ion-item lines="full">
+        <ion-label position="floating">Id Servicio:</ion-label>
+        <ion-input [(ngModel)]="servicio.id" formControlName="id" id="id" type="text" readOnly></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Descripción:</ion-label>
+        <ion-input [(ngModel)]="servicio.descripcion" formControlName="descripcion" id="descripcion" type="text"
+          required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Precio Unitario:</ion-label>
+        <ion-input [(ngModel)]="servicio.precioUnitario" formControlName="precioUnitario" id="precioUnitario"
+          type="number" required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="success" expand="block">Actualizar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-card>
+
+</ion-content>

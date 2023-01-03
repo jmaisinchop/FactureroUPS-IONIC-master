@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title class="ion-text-start">Actualizar</ion-title>
+    <ion-buttons slot="start">
+      <ion-col>
+        <ion-button type="submit" color="dark" expand="block" routerLink="../listar-cliente">Regresar</ion-button>
+      </ion-col>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="clientActualizarForm" (ngSubmit)="updateT()">
+    <ion-item lines="full" aria-readonly="true">
+      <ion-label position="floating" aria-disabled="true">Id:</ion-label>
+      <ion-input [(ngModel)]="cliente.id" formControlName="id" id="id"  type="text" readOnly></ion-input>
+    </ion-item>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-select [(ngModel)]="cliente.tipoIdentificacion"  formControlName="tipoIdentificacion" id="tipoIdentificacion" placeholder="Seleccionar Tipo de Documentación">
+          <ion-select-option value="RUC">RUC</ion-select-option>
+          <ion-select-option value="CEDULA">CEDULA</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item lines="full">
+      <ion-label position="floating">Número de Documentación:</ion-label>
+      <ion-input [(ngModel)]="cliente.identificacionNumero" formControlName="identificacionNumero" id="identificacionNumero" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-input [(ngModel)]="cliente.nombre" formControlName="nombre" id="nombre" type="email" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Dirección:</ion-label>
+      <ion-input [(ngModel)]="cliente.direccion" formControlName="direccion" id="direccion" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Teléfono:</ion-label>
+      <ion-input [(ngModel)]="cliente.telefono" formControlName="telefono" id="telefono" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input [(ngModel)]="cliente.correoElectronico" formControlName="correoElectronico" id="correoElectronico" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">
+          Actualizar</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

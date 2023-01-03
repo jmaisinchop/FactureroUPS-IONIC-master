@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title class="ion-text-justify">Servicios</ion-title>
+    <ion-buttons slot="start">
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" routerLink="../listar-servicios">Regresar</ion-button>
+      </ion-col>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+
+
+    <img src="https://cdn-icons-png.flaticon.com/512/1458/1458564.png" />
+
+
+    <ion-card-title class="ion-text-center">Registro de Servicio</ion-card-title>
+    <form [formGroup]="serviceRegisterForm" (ngSubmit)="registerServicio()">
+      <ion-item lines="full">
+        <ion-label position="floating">Descripción:</ion-label>
+        <ion-input formControlName="descripcion" id="descripcion" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Precio Unitario:</ion-label>
+        <ion-input formControlName="precioUnitario" id="precioUnitario" type="number" required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="success" expand="block">Registrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-card>
+
+</ion-content>

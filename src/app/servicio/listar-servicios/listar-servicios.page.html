@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title class="ion-text-center" >SECCION SERVICIOS</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-button color="success" routerLink="../crear-servicios">
+  <ion-icon name="bag-add-sharp"></ion-icon>
+  Nuevo Servicio
+</ion-button>
+<ion-content>
+
+  <ion-card color="warning" class="items" *ngFor="let servicios of servicioT"> 
+    <ion-card-header>
+
+      <img alt="Silhouette of a person's head" src="https://cdn-icons-png.flaticon.com/512/1458/1458564.png" />
+
+      <ion-card-content>
+        <h1 class="ion-text-center">{{servicios.descripcion}}</h1>
+      </ion-card-content>
+      <ion-card-subtitle class="ion-text-right">Precio Unitario: {{servicios.precioUnitario}} $</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="full" color="secondary"   (click)="actualizar(servicios)">
+        <ion-icon name="create-sharp"></ion-icon>
+        Editar
+      </ion-button>
+      <ion-button color="danger" expand="full" (click)="deleteServicio(servicios)">
+        <ion-icon name="trash-sharp"></ion-icon>
+        Eliminar
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

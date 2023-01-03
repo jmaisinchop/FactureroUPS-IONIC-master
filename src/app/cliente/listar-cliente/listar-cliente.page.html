@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+     
+    </ion-buttons>
+    <ion-title class="ion-text-left" color="dark">Seccion Clientes</ion-title>
+    <ion-buttons slot="end">
+      
+      <ion-button expand="full" color="dark" routerLink="../registrar-cliente">
+        <ion-icon name="person-add-outline"></ion-icon></ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-card color="warning" class="card-item" *ngFor="let clients of clientesT">
+    <img  src="../../../assets/icon/user.png" />
+    <ion-card-header>
+      <ion-card-title class="ion-text-center"> {{clients.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{clients.tipoIdentificacion}}:</ion-card-subtitle>
+      <ion-card-subtitle>{{clients.identificacionNumero}}</ion-card-subtitle>
+      <ion-card-subtitle>Telófono: {{clients.telefono}} </ion-card-subtitle>
+      <ion-card-subtitle> Email: {{clients.correoElectronico}} </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="full " (click)="actualizar(clients)">
+        <ion-icon name="create-sharp"></ion-icon>Actualizar</ion-button>
+      <ion-button color="danger" expand="full" (click)="delete(clients)">
+        <ion-icon name="trash-outline"></ion-icon>Eliminar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--  <ion-grid class="grid1">
+
+    <ion-row class="row1">
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row2">
+      <ion-col>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <ion-slide>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1>Iniciar Sesión</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+
+            <ion-item>
+              <ion-label>
+                <ion-icon name="mail-outline"></ion-icon>
+              </ion-label>
+              <ion-input   formControlName="username" id="username" type="text" placeholder="Correo electrónico *" required></ion-input>
+            </ion-item>
+        
+            <br />
+            <ion-item>
+              <ion-label>
+                <ion-icon name="lock-open-outline"></ion-icon>
+              </ion-label>
+                <ion-input  formControlName="password" id="password" type="password" placeholder="Contraseña *" required></ion-input>      
+            </ion-item> 
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="block">Ingresar</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button routerLink="../register" type="submit" fill="solid" expand="full">
+            Registrarse
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-slide>
+</form>
+ -->
+
+  <div class="fondo">
+
+    <div class="Login-box">
+      <img class="avatar"
+        src="https://www.ups.edu.ec/documents/20121/77326/Isotipo+Original.png/48fb2ada-b4e7-09df-b45a-884cda62cc9b?version=1.0&t=1620746533255&imagePreview=1"
+        alt="Logo de User">
+      <br>
+      <br>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <ion-input type="text" placeholder="Ingrese su Usuario" class="user" style="text-align:center;"
+          formControlName="username" id="username" required=""></ion-input>
+
+        <ion-input type="password" placeholder="Ingrese su Contraseña" class="contra" style="text-align:center;"
+          formControlName="password" id="password" required=""></ion-input>
+
+        <ion-button class="ingresar" type="submit" expand="block">Ingresar</ion-button>
+        
+      </form>
+      <ion-button class="registrar" type="submit" expand="block" routerLink="../register" >Registrarse</ion-button>
+    </div>
+  </div>
+</ion-content>
