@@ -39,4 +39,36 @@ export class FacturaService {
 
 
   }
+
+  listarAllServicio(idUser: number): Observable<FacturaCabecera[]> {
+    let finalUrl = this.endPoint + 'findAll';
+    return this.httpClient.get<FacturaCabecera[]>(finalUrl+"/"+idUser, this.httpOptions)
+   
+
+  }
+  listarAllServicioEmitidos(idUser: number): Observable<FacturaCabecera[]> {
+    let finalUrl = this.endPoint + 'findAll/issued';
+    return this.httpClient.get<FacturaCabecera[]>(finalUrl+"/"+idUser, this.httpOptions)
+   
+
+  }
+  listarAllServicioAnuladas(idUser: number): Observable<FacturaCabecera[]> {
+    let finalUrl = this.endPoint + 'findAll/cancel';
+    return this.httpClient.get<FacturaCabecera[]>(finalUrl+"/"+idUser, this.httpOptions)
+   
+
+  }
+
+  deleteFac(id: number){
+    let finalUrl = this.endPoint + 'cancel';
+    return this.httpClient.get(finalUrl+"/"+id)
+    .pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
+   
+
+  }
+
 }

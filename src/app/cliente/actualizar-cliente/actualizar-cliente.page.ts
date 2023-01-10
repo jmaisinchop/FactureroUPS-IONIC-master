@@ -12,20 +12,20 @@ import { Cliente } from 'src/app/entidades';
 })
 export class ActualizarClientePage implements OnInit {
 
-  clientActualizarForm : FormGroup = this.fb.group({   
-    'id':[''],
-    'tipoIdentificacion':['',[Validators.required]],
-    'identificacionNumero' : ['', [Validators.required]],
+  clientActualizarForm: FormGroup = this.fb.group({
+    'id': [''],
+    'tipoIdentificacion': ['', [Validators.required]],
+    'identificacionNumero': ['', [Validators.required]],
     'nombre': ['', [Validators.required]],
     'direccion': ['', [Validators.required]],
     'telefono': ['', [Validators.required]],
     'correoElectronico': ['', [Validators.required]]
-  }); 
+  });
   cliente: Cliente = new Cliente();
 
   constructor(
     private fb: FormBuilder,
- 
+
     private toastController: ToastController,
     private clientsService: ClientsService,
     private router: Router
@@ -36,40 +36,44 @@ export class ActualizarClientePage implements OnInit {
   }
 
   actualizar() {
-    let id = localStorage.getItem("id");
-    this.clientsService.getClientId(+id).subscribe(data => {
-      this.cliente = data;
+    let idC = localStorage.getItem("id");
+
+    this.clientsService.listarAllClientes().subscribe(data => {
+      console.log(data.find(x => x.id === (+idC)));
+      this.cliente = data.find(x => x.id === (+idC));
+
     })
   }
 
-  updateT(){
-    if(!this.clientActualizarForm.valid){
+  updateT() {
+    if (!this.clientActualizarForm.valid) {
       return false;
-    }else{
- 
+    } else {
+
       this.clientsService.updateClient(this.clientActualizarForm.value)
-      .subscribe(
-        (data)=>{
-          //console.log('hola', data)
-          this.mostrarMensaje('El Cliente ha sido actualizado Correctamente');
-          this.router.navigate(['../listar-cliente']);
-          
-         
-        },
-        (error)=>{
-          //console.log('Ocurrio un error', error.error)
-          this.mostrarMensaje(error.error)
-        }
-      );
+        .subscribe(
+          (data) => {
+            //console.log('hola', data)
+            this.mostrarMensaje('El Cliente ha sido actualizado Correctamente');
+            this.router.navigate(['../listar-cliente']);
+            localStorage.removeItem("id")
+
+
+          },
+          (error) => {
+            //console.log('Ocurrio un error', error.error)
+            this.mostrarMensaje(error.error)
+          }
+        );
       return true;
     }
   }
 
-  async mostrarMensaje(mensaje: any){
+  async mostrarMensaje(mensaje: any) {
     const toast = await this.toastController.create({
       position: 'top',
       message: mensaje,
-      duration:3000
+      duration: 3000
     });
     toast.present();
   }

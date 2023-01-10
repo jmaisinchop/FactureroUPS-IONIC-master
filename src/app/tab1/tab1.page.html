@@ -15,7 +15,7 @@
 
 <ion-content>
 
-  <ion-card color="warning" class="factura">
+  <ion-card color="warning" class="factura" *ngFor="let facts of factC">
 
     <ion-avatar style="margin: auto;">
 
@@ -24,16 +24,94 @@
     </ion-avatar>
 
     <ion-card-content>
+      <ion-item color="warning">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">Fecha Emisión: </ion-label>
+        <ion-label style="font-size: 10px;">{{facts.fechaDeEmision}}</ion-label>
+
+      </ion-item>
+      <ion-item color="warning">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">Cliente: </ion-label>
+        <ion-label style="font-size: 10px;">{{facts.cliente.nombre}} </ion-label>
+      </ion-item>
+      <ion-item color="warning">
+        <ion-icon name="cash-outline"></ion-icon>
+        <ion-label style="font-size: 10px;">Total: </ion-label>
+        <ion-label style="font-size: 10px;"> {{facts.total}} $</ion-label>
+      </ion-item>
       <ion-buttons>
-        <ion-button id="detalles" color="tertiary" expand="full" style="margin: auto;">
+        <ion-button id="detalles" color="tertiary" expand="full" style="margin: auto;"
+          (click)="setOpen(true,facts.detalles)">
           <ion-icon name="reorder-four-outline"></ion-icon>
           Detalles
         </ion-button>
-        <ion-button id="anular" color="danger" expand="full" strong="margin=auto">
+        <ion-modal [isOpen]="isModalOpen" id="modal1">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>DETALLES</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="setOpen(false,facts.detalles)">Close</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-card style="background-color: white;" *ngFor="let detalles1 of factCTo">
+
+
+                <ion-item color="warning">
+                  <ion-avatar style="margin: auto;">
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/1458/1458564.png" />
+                  </ion-avatar>
+                </ion-item>
+
+
+                <ion-item color="warning">
+                  <ion-icon name="construct-outline"></ion-icon>
+                  <ion-label color="dark" style="font-size:  13px;" >   Producto:
+                  </ion-label>
+                  <ion-label color="dark" style="font-size:  13px;">
+                    {{detalles1.servicio.descripcion}}</ion-label>
+                </ion-item>
+
+                <ion-item color="warning">
+                  <ion-icon name="cash-outline"></ion-icon>
+                  <ion-label color="dark" style="font-size:  13px;">Pecio:</ion-label>
+                  <ion-label color="dark" style="font-size:  13px;">{{detalles1.precioUnitario}} $</ion-label>
+                </ion-item>
+                <ion-item color="warning">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                  <ion-label color="dark" style="font-size: 13px;">Cantidad:</ion-label>
+                  <ion-label color="dark" style="font-size:  13px;">{{detalles1.cantidad}}</ion-label>
+                </ion-item>
+                <ion-item color="warning">
+                  <ion-icon name="cash-outline"></ion-icon>
+                  <ion-label color="dark" style="font-size:  13px;">Subtotal:</ion-label>
+                  <ion-label color="dark" style="font-size:  13px;">{{detalles1.total}}$</ion-label>
+                </ion-item>
+
+
+
+
+
+
+              </ion-card>
+
+
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+        <ion-button id="anular" color="danger" expand="full" strong="margin=auto"
+          *ngIf="facts.estadoFactura=='EMITIDA'" (click)="deleteFac(facts.id)">
           <ion-icon name="trash-sharp"></ion-icon>
           Anular
         </ion-button>
       </ion-buttons>
+
+
     </ion-card-content>
   </ion-card>
 

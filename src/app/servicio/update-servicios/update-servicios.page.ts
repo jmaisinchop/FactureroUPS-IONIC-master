@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Console } from 'console';
 import { ServiciosService } from 'src/app/api/servicios.service';
 import { Servicio } from 'src/app/entidades';
 
@@ -32,44 +33,46 @@ export class UpdateServiciosPage implements OnInit {
   }
 
   cargarServicio() {
-    let id = localStorage.getItem("idServicio");
-    this.servicioService.getServicioId(+id).subscribe(data => {
-      console.log(data.descripcion);
-      this.servicio = data;
+    let idS = localStorage.getItem("idServicio");
+    let idU = localStorage.getItem("id-username");
+    this.servicioService.listarAllServicio(+idU).subscribe(data => {
+
+      console.log(data.find(x => x.id === (+idS)));
+      this.servicio=data.find(x => x.id === (+idS));
     })
 
   }
 
   actualizarServicio() {
-    if(!this.servicioActualizarForm.valid){
+    if (!this.servicioActualizarForm.valid) {
       return false;
-    }else{
- 
+    } else {
+
       this.servicioService.updateServicio(this.servicioActualizarForm.value)
-      .subscribe(
-        (data)=>{
-          //console.log('hola', data)
-          this.mostrarMensaje('El Servicio ha sido actualizado Correctamente');
-          this.router.navigate(['../listar-servicios']);
-          
-         
-        },
-        (error)=>{
-          //console.log('Ocurrio un error', error.error)
-          this.mostrarMensaje(error.error)
-        }
-      );
+        .subscribe(
+          (data) => {
+            //console.log('hola', data)
+            this.mostrarMensaje('El Servicio ha sido actualizado Correctamente');
+            this.router.navigate(['../listar-servicios']);
+            localStorage.removeItem("idServicio")
+
+          },
+          (error) => {
+            //console.log('Ocurrio un error', error.error)
+            this.mostrarMensaje(error.error)
+          }
+        );
       return true;
     }
 
   }
 
-  
-  async mostrarMensaje(mensaje: any){
+
+  async mostrarMensaje(mensaje: any) {
     const toast = await this.toastController.create({
       position: 'bottom',
       message: mensaje,
-      duration:1000
+      duration: 1000
     });
     toast.present();
   }

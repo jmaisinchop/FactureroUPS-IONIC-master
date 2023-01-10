@@ -40,11 +40,7 @@ export class ServiciosService {
 
   }
 
-  getServicioId(id: number){
-    let finalUrl = this.endPoint + 'findById';
-    return this.httpClient.get<Servicio>(finalUrl+"/"+id)
-
-  }
+ 
 
 
   updateServicio(servicio: Servicio){

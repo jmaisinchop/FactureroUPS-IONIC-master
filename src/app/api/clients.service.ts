@@ -44,11 +44,7 @@ export class ClientsService {
 
   }
 
-  getClientId(id: number){
-    let finalUrl = this.endPoint + 'findById';
-    return this.httpClient.get<Cliente>(finalUrl+"/"+id)
 
-  }
 
   updateClient(cliente: Cliente){
     let finalUrl = this.endPoint + 'update';
