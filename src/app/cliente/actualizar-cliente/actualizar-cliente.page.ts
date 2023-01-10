@@ -13,7 +13,7 @@ import { Cliente } from 'src/app/entidades';
 export class ActualizarClientePage implements OnInit {
 
   clientActualizarForm: FormGroup = this.fb.group({
-    'id': [''],
+    'id': [localStorage.getItem("id")],
     'tipoIdentificacion': ['', [Validators.required]],
     'identificacionNumero': ['', [Validators.required]],
     'nombre': ['', [Validators.required]],

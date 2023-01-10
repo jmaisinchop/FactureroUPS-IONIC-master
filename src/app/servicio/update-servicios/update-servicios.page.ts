@@ -13,7 +13,7 @@ import { Servicio } from 'src/app/entidades';
 })
 export class UpdateServiciosPage implements OnInit {
   servicioActualizarForm: FormGroup = this.fb.group({
-    'id': [''],
+    'id': [localStorage.getItem("idServicio")],
     'descripcion': ['', [Validators.required]],
     'precioUnitario': ['', [Validators.required]]
 

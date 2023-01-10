@@ -12,10 +12,7 @@
 
 <ion-content>
   <form [formGroup]="clientActualizarForm" (ngSubmit)="updateT()">
-    <ion-item lines="full" aria-readonly="true">
-      <ion-label position="floating" aria-disabled="true">Id:</ion-label>
-      <ion-input [(ngModel)]="cliente.id" formControlName="id" id="id"  type="text" readOnly></ion-input>
-    </ion-item>
+   
     <ion-list lines="full">
       <ion-item>
         <ion-select [(ngModel)]="cliente.tipoIdentificacion"  formControlName="tipoIdentificacion" id="tipoIdentificacion" placeholder="Seleccionar Tipo de Documentación">

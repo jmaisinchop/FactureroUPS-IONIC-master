@@ -13,12 +13,16 @@ import { Detalles, Servicio } from 'src/app/entidades';
   styleUrls: ['./crear-detalles.page.scss'],
 })
 export class CrearDetallesPage implements OnInit {
+  pre=0
   subtotal: number;
   total: number
   totalF: number
   impuesto: number
   servicioT: Servicio[] = []
   det = [];
+  serviciof: Servicio= new Servicio
+
+  serviciott: Servicio[]=[]
 
   user: FormGroup = this.fb.group({
     'producto': ['',[Validators.required]],
@@ -52,7 +56,7 @@ export class CrearDetallesPage implements OnInit {
       });
   }
 
-  agregarDetalles(precio: number, idServicio: number, cantidad1: number) {
+  agregarDetalles(precio: number, idServicio: number, cantidad1: number, nom: string) {
     
 
     if (precio==0 || idServicio==0 || cantidad1==0) {
@@ -68,7 +72,8 @@ export class CrearDetallesPage implements OnInit {
           "cantidad": cantidad1,
           "precioUnitario": precio,
           "total": this.total,
-          "servicioId": idServicio
+          "servicioId": idServicio,
+          "descripcion":nom
 
 
         }
@@ -123,6 +128,23 @@ export class CrearDetallesPage implements OnInit {
       duration: 1500
     });
     toast.present();
+  }
+
+  selectedTeam = '';
+	onSelected(value:number){
+    console.log("llega")
+		this.selectedTeam = ""+value;
+	}
+  currentFood1 = undefined;
+  currentFood = undefined;
+  handleChange(ev) {
+    this.currentFood = ev.target.value;
+   
+
+    this.serviciof=this.currentFood
+    console.log(this.serviciof.precioUnitario)
+    
+
   }
 
 }

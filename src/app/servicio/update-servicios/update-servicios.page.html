@@ -18,10 +18,7 @@
 
     <ion-card-title class="ion-text-center">Actualizar Servicio</ion-card-title>
     <form [formGroup]="servicioActualizarForm" (ngSubmit)="actualizarServicio()">
-      <ion-item lines="full">
-        <ion-label position="floating">Id Servicio:</ion-label>
-        <ion-input [(ngModel)]="servicio.id" formControlName="id" id="id" type="text" readOnly></ion-input>
-      </ion-item>
+      
       <ion-item lines="full">
         <ion-label position="floating">Descripción:</ion-label>
         <ion-input [(ngModel)]="servicio.descripcion" formControlName="descripcion" id="descripcion" type="text"

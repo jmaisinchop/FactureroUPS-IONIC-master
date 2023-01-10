@@ -16,25 +16,27 @@ import { Cliente, Detalles, Servicio } from 'src/app/entidades';
 export class CrearFacturaPage implements OnInit {
   servicioT: Servicio[] = []
   dettalle: Detalles = new Detalles();
-  detalles: Detalles[] =JSON.parse(localStorage.getItem("det"));
-  subtotal: number= +localStorage.getItem("subtotal");
+  detalles: Detalles[] = JSON.parse(localStorage.getItem("det"));
+  detalles1: any[] = JSON.parse(localStorage.getItem("det"));
+  subtotal: number = +localStorage.getItem("subtotal");
   total: number
-  totalF: number= +localStorage.getItem("totalfinal");
-  impuesto: number= +localStorage.getItem("iva");
+  totalF: number = +localStorage.getItem("totalfinal");
+  impuesto: number = +localStorage.getItem("iva");
 
   det = [];
   suscription: Subscription;
   cliente: Cliente = new Cliente();
   servicio: Servicio = new Servicio();
+  date=new Date()
   facturaRegisterForm: FormGroup = this.fb.group({
-    'fechaDeEmision': "2022-12-16",
+    'fechaDeEmision': this.date.getFullYear()+"-0"+(this.date.getMonth() + 1)+"-"+this.date.getDate(),
     "subtotal": localStorage.getItem("subtotal"),
     "impuesto": localStorage.getItem("iva"),
     "total": localStorage.getItem("totalfinal"),
     "clienteId": ['', [Validators.required]],
     'usuarioId': localStorage.getItem("id-username"),
     "detalles": [JSON.parse(localStorage.getItem("det"))]
-    
+
 
   });
 
@@ -46,16 +48,21 @@ export class CrearFacturaPage implements OnInit {
     private toastController: ToastController,
     private clienteService: ClientsService,
     private router: Router,
-   
+
     private fb: FormBuilder,
 
   ) { }
 
   ngOnInit() {
+    let date = new Date().toLocaleDateString();
+    console.log(date)
+    localStorage.setItem("date",date)
+    
+
 
   }
 
- 
+
 
   buscarClienteIdentificacion(identificacion: string) {
     this.clienteService.getClienteIdentificacion(identificacion).subscribe(
@@ -71,7 +78,7 @@ export class CrearFacturaPage implements OnInit {
 
   }
 
-  
+
   cargarfactura() {
     if (!this.facturaRegisterForm.valid) {
       return false;
@@ -82,13 +89,13 @@ export class CrearFacturaPage implements OnInit {
           (data) => {
             console.log('hola', data)
 
-            
+
             this.facturaRegisterForm.reset();
             localStorage.removeItem("subtotal")
             localStorage.removeItem("totalfinal")
             localStorage.removeItem("iva")
             localStorage.removeItem("det"),
-            this.mostrarMensaje('Factura Creada exitosamente');
+              this.mostrarMensaje('Factura Creada exitosamente');
             this.det.pop()
             this.router.navigate(['listar-factura']);
           },
