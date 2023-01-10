@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicio sesión</ion-title>
+    <ion-title class="ion-text-center">Inicio sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -78,17 +78,17 @@
       <br>
       <br>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
-
-        <ion-input type="text" placeholder="Ingrese su Usuario" class="user" style="text-align:center;"
-          formControlName="username" id="username" required=""></ion-input>
+     
+          <ion-input type="text" placeholder="Ingrese su Usuario" class="user" style="text-align:center;"
+            formControlName="username" id="username" required=""></ion-input>
 
         <ion-input type="password" placeholder="Ingrese su Contraseña" class="contra" style="text-align:center;"
           formControlName="password" id="password" required=""></ion-input>
 
         <ion-button class="ingresar" type="submit" expand="block">Ingresar</ion-button>
-        
+
       </form>
-      <ion-button class="registrar" type="submit" expand="block" routerLink="../register" >Registrarse</ion-button>
+      <ion-button class="registrar" type="submit" expand="block" routerLink="../register">Registrarse</ion-button>
     </div>
   </div>
 </ion-content>

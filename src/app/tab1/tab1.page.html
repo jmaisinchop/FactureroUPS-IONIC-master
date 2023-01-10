@@ -1,38 +1,39 @@
 <ion-header>
-  <ion-toolbar color="secondary">
-    <ion-title class="ion-text-center" >SECCION SERVICIOS</ion-title>
+  <ion-toolbar color="success">
+    <ion-title class="ion-text-center" color="dark">SECCION SERVICIOS</ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-menu-button color="dark" menu="main-menu"></ion-menu-button>
     </ion-buttons>
 
   </ion-toolbar>
 
 </ion-header>
-<ion-button color="success" routerLink="../crear-factura">
+<ion-button color="tertiary" routerLink="../crear-detalles">
   <ion-icon name="bag-add-sharp"></ion-icon>
   Emitir Factura
 </ion-button>
 
 <ion-content>
 
-  <ion-card  color="warning" class="factura" > 
-    <ion-card-header>
+  <ion-card color="warning" class="factura">
 
-      <img alt="Silhouette of a person's head" src="https://cdn-icons-png.flaticon.com/512/5231/5231365.png" />
+    <ion-avatar style="margin: auto;">
 
-      <ion-card-content>
-        <h1 class="ion-text-center"></h1>
-      </ion-card-content>
-      <ion-card-subtitle class="ion-text-right"></ion-card-subtitle>
-    </ion-card-header>
+      <img alt="Silhouette of a person's head" src="../../assets/icon/fac.png" />
+
+    </ion-avatar>
 
     <ion-card-content>
-      
-      <ion-button id="anular" color="danger" expand="full" >
-        <ion-icon name="trash-sharp"></ion-icon>
-        Anular
-      </ion-button>
-
+      <ion-buttons>
+        <ion-button id="detalles" color="tertiary" expand="full" style="margin: auto;">
+          <ion-icon name="reorder-four-outline"></ion-icon>
+          Detalles
+        </ion-button>
+        <ion-button id="anular" color="danger" expand="full" strong="margin=auto">
+          <ion-icon name="trash-sharp"></ion-icon>
+          Anular
+        </ion-button>
+      </ion-buttons>
     </ion-card-content>
   </ion-card>
 

@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="success">
     <ion-title class="ion-text-wrap">Registro </ion-title>
     <ion-buttons slot="start">
-      <ion-button  color="dark" routerLink="../listar-cliente">
+      <ion-button color="dark" routerLink="../listar-cliente">
         <ion-icon name="arrow-back-circle-outline"></ion-icon>Regresar</ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -13,37 +13,43 @@
     <!-- Radio buttons -->
     <ion-list lines="full">
       <ion-item>
-        <ion-select formControlName="tipoIdentificacion" id="tipoIdentificacion" placeholder="Seleccionar Tipo de Documentación">
-          <ion-select-option  value="RUC">RUC</ion-select-option>
+        <ion-label floating>
+          <ion-icon name="person-circle-outline"></ion-icon>
+          Identificación
+        </ion-label>
+        <ion-select formControlName="tipoIdentificacion" id="tipoIdentificacion" placeholder="Seleccionar">
+          <ion-select-option value="RUC">RUC</ion-select-option>
           <ion-select-option value="CEDULA">CEDULA</ion-select-option>
-         
+
         </ion-select>
       </ion-item>
+
+      <ion-item lines="full">
+
+        <ion-label position="floating"> <ion-icon name="person-outline"></ion-icon> #Documentación:</ion-label>
+        <ion-input formControlName="identificacionNumero" id="identificacionNumero" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating"> <ion-icon name="text-outline"></ion-icon>  Nombre:</ion-label>
+        <ion-input formControlName="nombre" id="nombre" type="email" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="text-outline"></ion-icon> Dirección:</ion-label>
+        <ion-input formControlName="direccion" id="direccion" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating"><ion-icon name="call-outline"></ion-icon> Teléfono:</ion-label>
+        <ion-input formControlName="telefono" id="telefono" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">
+          <ion-icon name="mail-outline"></ion-icon> Email:</ion-label>
+        <ion-input formControlName="correoElectronico" id="correoElectronico" type="text" required></ion-input>
+      </ion-item>
     </ion-list>
-    <ion-item lines="full">
-      <ion-label position="floating">Número de Documentación:</ion-label>
-      <ion-input formControlName="identificacionNumero" id="identificacionNumero" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Nombre:</ion-label>
-      <ion-input formControlName="nombre" id="nombre" type="email" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Dirección:</ion-label>
-      <ion-input  formControlName="direccion" id="direccion" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Teléfono:</ion-label>
-      <ion-input formControlName="telefono" id="telefono" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Email:</ion-label>
-      <ion-input formControlName="correoElectronico" id="correoElectronico" type="text" required></ion-input>
-    </ion-item>
- 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Registrar</ion-button>
+        <ion-button type="submit" color="success" expand="block">Registrar</ion-button>
       </ion-col>
     </ion-row>
   </form>

@@ -13,10 +13,14 @@ export class InicioPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.removeItem("subtotal")
+    localStorage.removeItem("totalfinal")
+    localStorage.removeItem("iva")
   }
 
   cerrarSesion(){
     localStorage.setItem("ingresado","false")
+
     this.router.navigate(['../login']);
   }
 

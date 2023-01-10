@@ -3,10 +3,10 @@
     <ion-content class="ion-padding">
       <div class="menu-header-bg"></div>
       <div class="header-content">
-        <img src="https://cdn-icons-png.flaticon.com/512/219/219983.png" alt="">
+        <img src="../../assets/icon/user.png" >
         <ion-label>
-          <h2>{{userRev()}}</h2>
-          <p>{{fecha| date:'short'}}</p>
+          <h2>              {{userRev()}}</h2>
+          <p>               {{fecha| date:'short'}}</p>
         </ion-label>
 
       </div>
@@ -15,13 +15,13 @@
         <ion-menu-toggle>
         
           <ion-item>
-            <ion-icon name="add-circle" routerLink="listar-cliente"></ion-icon>CLIENTES
+            <ion-icon name="id-card-outline" routerLink="listar-cliente"></ion-icon>CLIENTES
           </ion-item>
           <ion-item>
-            <ion-icon name="add-circle" routerLink="listar-servicios"></ion-icon>SERVICIOS
+            <ion-icon  name="medkit-outline" routerLink="listar-servicios"></ion-icon>SERVICIOS
           </ion-item>
           <ion-item>
-            <ion-icon name="add-circle" routerLink="listar-factura"></ion-icon>FACTURACION
+            <ion-icon name="receipt-outline" routerLink="listar-factura"></ion-icon>FACTURACION
           </ion-item>
           <ion-item>
             <ion-icon name="log-out-outline" (click)="cerrarSesion()"></ion-icon>LogOut

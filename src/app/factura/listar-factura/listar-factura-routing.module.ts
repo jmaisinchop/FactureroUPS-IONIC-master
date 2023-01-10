@@ -28,7 +28,13 @@ const routes: Routes = [
       {
         path: 'crear-factura',
         loadChildren: () => import('../crear-factura/crear-factura.module').then(m => m.CrearFacturaPageModule)
+      },
+      {
+        path: 'crear-detalles',
+        loadChildren: () => import('../crear-detalles/crear-detalles.module').then(m => m.CrearDetallesPageModule)
       }
+     
+      
       
     ]
   }

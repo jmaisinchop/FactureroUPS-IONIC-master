@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CrearFacturaPageRoutingModule } from './crear-factura-routing.module';
+import { CrearDetallesPageRoutingModule } from './crear-detalles-routing.module';
 
-import { CrearFacturaPage } from './crear-factura.page';
+import { CrearDetallesPage } from './crear-detalles.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { CrearFacturaPage } from './crear-factura.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    CrearFacturaPageRoutingModule
+    CrearDetallesPageRoutingModule
   ],
-  declarations: [CrearFacturaPage]
+  declarations: [CrearDetallesPage]
 })
-export class CrearFacturaPageModule {}
+export class CrearDetallesPageModule {}

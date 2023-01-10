@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ClientsService } from 'src/app/api/clients.service';
+import { FacturaService } from 'src/app/api/factura.service';
 import { ServiciosService } from 'src/app/api/servicios.service';
 import { Cliente, Detalles, Servicio } from 'src/app/entidades';
 
@@ -12,40 +14,48 @@ import { Cliente, Detalles, Servicio } from 'src/app/entidades';
   styleUrls: ['./crear-factura.page.scss'],
 })
 export class CrearFacturaPage implements OnInit {
-
   servicioT: Servicio[] = []
   dettalle: Detalles = new Detalles();
-  detalles: Detalles[] = [];
-  subtotal: number;
+  detalles: Detalles[] =JSON.parse(localStorage.getItem("det"));
+  subtotal: number= +localStorage.getItem("subtotal");
   total: number
-  totalF: number
-  impuesto: number
+  totalF: number= +localStorage.getItem("totalfinal");
+  impuesto: number= +localStorage.getItem("iva");
 
   det = [];
   suscription: Subscription;
   cliente: Cliente = new Cliente();
   servicio: Servicio = new Servicio();
+  facturaRegisterForm: FormGroup = this.fb.group({
+    'fechaDeEmision': "2022-12-16",
+    "subtotal": localStorage.getItem("subtotal"),
+    "impuesto": localStorage.getItem("iva"),
+    "total": localStorage.getItem("totalfinal"),
+    "clienteId": ['', [Validators.required]],
+    'usuarioId': localStorage.getItem("id-username"),
+    "detalles": [JSON.parse(localStorage.getItem("det"))]
+    
+
+  });
+
+
 
   constructor(
     private servicioService: ServiciosService,
+    private facturaService: FacturaService,
     private toastController: ToastController,
     private clienteService: ClientsService,
-    private router: Router
+    private router: Router,
+   
+    private fb: FormBuilder,
+
   ) { }
 
   ngOnInit() {
-    this.cargarCliente();
+
   }
 
-  cargarCliente() {
-
-    this.servicioService.listarAllServicio(+localStorage.getItem("id-username"))
-      .subscribe(servicios => {
-        this.servicioT = servicios
-
-
-      });
-  }
+ 
 
   buscarClienteIdentificacion(identificacion: string) {
     this.clienteService.getClienteIdentificacion(identificacion).subscribe(
@@ -61,40 +71,37 @@ export class CrearFacturaPage implements OnInit {
 
   }
 
-  agregarDetalles(precio: number, idServicio: number, cantidad1: number) {
-
-
-    this.total = precio * cantidad1;
-    this.total.toFixed(2);
-    this.det.push(
-      {
-        "cantidad": cantidad1,
-        "precioUnitario": precio,
-        "total": this.total,
-        "servicioId": idServicio
-
-      }
-        
-
-    )
-
-    this.subtotal = +localStorage.getItem("subtotal")
-    console.log(localStorage.getItem("subtotal"))
-
-    this.subtotal = (this.total + this.subtotal);
-    this.impuesto=(this.subtotal*0.12);
-    this.totalF=this.impuesto+this.subtotal
-    this.subtotal.toFixed(2);
-    this.totalF.toFixed(2);
-    this.impuesto.toFixed(2)
   
+  cargarfactura() {
+    if (!this.facturaRegisterForm.valid) {
+      return false;
+    } else {
 
+      this.facturaService.register(this.facturaRegisterForm.value)
+        .subscribe(
+          (data) => {
+            console.log('hola', data)
 
-
-   
+            
+            this.facturaRegisterForm.reset();
+            localStorage.removeItem("subtotal")
+            localStorage.removeItem("totalfinal")
+            localStorage.removeItem("iva")
+            localStorage.removeItem("det"),
+            this.mostrarMensaje('Factura Creada exitosamente');
+            this.det.pop()
+            this.router.navigate(['listar-factura']);
+          },
+          (error) => {
+            //console.log('Ocurrio un error', error.error)
+            this.mostrarMensaje(error.error)
+          }
+        );
+      return true;
+    }
 
   }
- 
+
 
   async mostrarMensaje(mensaje: any) {
     const toast = await this.toastController.create({
