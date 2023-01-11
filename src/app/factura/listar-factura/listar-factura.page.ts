@@ -34,4 +34,8 @@ export class ListarFacturaPage implements OnInit {
       });
   }
 
+  eliminarDet(){
+    localStorage.removeItem("det")
+  }
+
 }

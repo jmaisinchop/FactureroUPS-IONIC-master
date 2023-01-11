@@ -102,6 +102,19 @@ export class CrearDetallesPage implements OnInit {
 
 
   }
+  cancelar(){
+  
+    localStorage.removeItem("subtotal")
+    localStorage.removeItem("totalfinal")
+    localStorage.removeItem("iva")
+    localStorage.removeItem("det")
+    this.det.shift()
+      this.subtotal = 0
+      this.impuesto = 0
+      this.totalF = 0
+
+      this.router.navigate(['../listar-factura'])
+  }
 
   siguiente() {
 

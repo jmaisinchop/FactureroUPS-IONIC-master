@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar color="success">
+    <ion-buttons slot="start">
+     
+      <ion-button class="pagination" color="dark" (click)="cancelar()"> <ion-icon name="chevron-back-outline" color="dark"></ion-icon>Regresar</ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button class="pagination" color="dark" (click)="siguiente()">Siguiente</ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center" color="dark">Detalles Servicio</ion-title>
+
+    <ion-title class="ion-text-center" color="dark">Servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 

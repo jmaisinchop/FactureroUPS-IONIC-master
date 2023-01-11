@@ -78,5 +78,10 @@ export class ActualizarClientePage implements OnInit {
     toast.present();
   }
 
+  cancelar(){
+    this.router.navigate(['../listar-cliente']);
+    localStorage.removeItem("id")
+  }
+
 
 }

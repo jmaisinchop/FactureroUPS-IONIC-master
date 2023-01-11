@@ -51,5 +51,9 @@ export class Tab1Page implements OnInit {
     
   }
 
+  ir(){
+    this.router.navigate(['../crear-detalles'])
+  }
+
 
 }
